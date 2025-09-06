@@ -13,6 +13,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * A simple Swing-based client for the chat server. The client has a main frame
+ * window with a text field for entering messages and a text area to see the
+ * whole dialog.
+ *
+ */
 public class Client extends JFrame implements Runnable {
 
 	private static final long serialVersionUID = -3611092341471039022L;
@@ -22,6 +28,11 @@ public class Client extends JFrame implements Runnable {
 	final JTextField txtField = new JTextField(40);
 	final JTextArea messageArea = new JTextArea(8, 40);
 
+	/**
+	 * Constructs the client by laying out the GUI and registering a listener
+	 * with the textfield so that pressing Return in the listener sends the
+	 * textfield contents to the server.
+	 */
 	public Client() {
 		// set frame style
 		txtField.setFont(new Font("Consolas", Font.PLAIN, 22));
@@ -43,19 +54,30 @@ public class Client extends JFrame implements Runnable {
 		});
 	}
 
-	// ask for server IP address
+	/**
+	 * Prompt for and return the address of the server.
+     * @return
+	 */
 	private String serverGetter() {
 		return JOptionPane.showInputDialog(this, "Enter server address:",
 				"Wellcome", JOptionPane.QUESTION_MESSAGE);
 	}
 
-	// ask for client name
+	/**
+	 * Prompt for and return the desired screen name.
+     * @return
+	 */
 	private String nameGetter() {
 		return JOptionPane.showInputDialog(this, "Choose a name:",
 				"Name Selection", JOptionPane.PLAIN_MESSAGE);
 	}
 
-	// create new client page
+	/**
+	 * Connects to the server then enters the processing loop.
+	 *
+	 * @param args
+	 * @throws java.io.IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		Client client = new Client();
 		client.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +85,9 @@ public class Client extends JFrame implements Runnable {
 		client.run();
 	}
 
+	/**
+	 *
+	 */
 	@Override
 	public void run() {
 		// set fields
@@ -76,8 +101,8 @@ public class Client extends JFrame implements Runnable {
 			System.out.println(e.toString());
 		}
 
+		// Process all messages from server, according to the protocol.
 		while (true) {
-			// receive clients input
 			String line = null;
 			try {
 				line = in.readLine();
@@ -85,7 +110,6 @@ public class Client extends JFrame implements Runnable {
 				System.out.println(e.toString());
 			}
 
-			// example for text protocol
 			if (line.startsWith("SUBMIT-NAME")) {
 				String clientName = nameGetter();
 				out.println(clientName);
