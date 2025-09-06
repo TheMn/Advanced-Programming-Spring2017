@@ -15,14 +15,22 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * Represents a player's profile, including their name, picture, and score.
+ *
+ * @author TheMn
+ * @version 1.1
+ */
 public class Profile {
 
 	private String name;
 	private JLabel pic;
 	private double score;
-	
+
 	/**
-	 * Each player has a profile.
+	 * Constructs a new Profile object. The user is prompted to enter their name
+	 * and choose a profile picture. The score is initialized based on the
+	 * player's last recorded score.
 	 */
 	public Profile() {
 		try {
@@ -44,7 +52,9 @@ public class Profile {
 	}
 
 	/**
-	 * @return profilePanel the panel that shows profile
+	 * Creates and returns a panel that displays the player's profile information.
+	 *
+	 * @return A {@link JPanel} containing the player's name and picture.
 	 */
 	public JPanel profilePanel() {
 		JPanel profilePanel = new JPanel();
@@ -55,15 +65,16 @@ public class Profile {
 	}
 
 	/**
-	 * @return the name
+	 * Gets the player's name.
+	 *
+	 * @return The player's name.
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * Prompts the user to enter their name.
 	 */
 	private void setName() {
 		String name = null;
@@ -76,15 +87,16 @@ public class Profile {
 	}
 
 	/**
-	 * @return the pic
+	 * Gets the label containing the player's profile picture.
+	 *
+	 * @return The {@link JLabel} with the profile picture.
 	 */
 	public JLabel getPic() {
 		return pic;
 	}
 
 	/**
-	 * @param pic
-	 *            the pic to set
+	 * Allows the user to choose a profile picture from their files.
 	 */
 	private void setPic() {
 
@@ -129,7 +141,7 @@ public class Profile {
 			public void actionPerformed(ActionEvent arg0) {
 				chooseFrame.setVisible(false);
 				chooseFrame.dispose();
-				
+
 			}
 		});
 
@@ -146,15 +158,18 @@ public class Profile {
 	}
 
 	/**
-	 * @return the score
+	 * Gets the player's score.
+	 *
+	 * @return The player's score.
 	 */
 	public Double getScore() {
 		return (Double) score;
 	}
 
 	/**
-	 * @param score
-	 *            the score to set
+	 * Sets the player's score.
+	 *
+	 * @param score The score to set.
 	 */
 	public void setScore(double score) {
 		this.score = score;

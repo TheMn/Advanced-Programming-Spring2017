@@ -3,8 +3,12 @@ package poroje3;
 import java.util.Random;
 
 /**
- * The game class implementation of HangmanGame
+ * Represents a single game of Hangman. This class manages the game state,
+ * including the secret sentence, the player's progress, and the remaining guesses.
+ *
  * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Game {
 
@@ -54,12 +58,15 @@ public class Game {
 	private boolean[] guessed = new boolean[26];
 	private long toGuess = 0;
 	private long time;
-	
+
 	/**
-	 * The game contractor
-	 * @param player Player
+	 * Constructs a new Game object for the given player.
+	 * Initializes the game by selecting a random sentence, setting up the initial state,
+	 * and recording the start time.
+	 *
+	 * @param player The player of the game.
 	 */
-	Game(Player player) {
+	public Game(Player player) {
 		this.setGoal();
 		this.setSituation();
 		this.setPlayer(player);
@@ -68,25 +75,27 @@ public class Game {
 	}
 
 	/**
-	 * This method will choose a random sentence to guess
+	 * Selects a random sentence from the predefined list to be the goal of the game.
 	 */
-	private void setGoal() {
+	public void setGoal() {
 		Random random = new Random();
 		this.goal = sentences[random.nextInt(sentences.length)];
 	}
 
 	/**
-	 * This method will set the player of current game
-	 * @param player Player
+	 * Sets the player for the current game.
+	 *
+	 * @param player The player of the game.
 	 */
-	private void setPlayer(Player player) {
+	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
+
 	/**
-	 * This method will replace all characters with underscores and save spaces as they were
+	 * Initializes the 'situation' string, which represents the player's progress.
+	 * All letters are initially replaced with underscores, while spaces are preserved.
 	 */
-	private void setSituation() {
+	public void setSituation() {
 		for (int i = 0; i < this.goal.length(); i++) {
 			if (this.goal.charAt(i) == ' ')
 				this.situation += " ";
@@ -99,36 +108,38 @@ public class Game {
 	}
 
 	/**
-	 * This method will set whole guessed characters false in starting the game
+	 * Resets the record of guessed characters at the beginning of a new game.
 	 */
-	private void setGuessed() {
+	public void setGuessed() {
 		for (int i = 0; i < this.guessed.length; i++) {
 			this.guessed[i] = false;
 		}
 		this.wrongGuessed = "";
 	}
-	
+
 	/**
-	 * This method will set Start time of the game
+	 * Records the start time of the game.
 	 */
-	private void setTime() {
+	public void setTime() {
 		this.time = System.currentTimeMillis();
 	}
-	
+
 	/**
-	 * This method will return if input String can be a normal guess or not
-	 * @param guess String
-	 * @return boolean
+	 * Validates if the player's guess is a single alphabetic character.
+	 *
+	 * @param guess The player's guess.
+	 * @return {@code true} if the guess is a single letter, {@code false} otherwise.
 	 */
-	private boolean canGuess(String guess) {
+	public boolean canGuess(String guess) {
 		char c = guess.charAt(0);
 		return (guess.length() == 1 && ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')));
 	}
 
 	/**
-	 * Heart of this code 
-	 * This method will process whole game and do guess
-	 * @param guess String
+	 * Processes the player's guess. If the guess is valid and has not been made before,
+	 * it updates the game state. Otherwise, it informs the player of the invalid input.
+	 *
+	 * @param guess The player's guess.
 	 */
 	public void guessing(String guess) {
 		char guessChar = guess.charAt(0);
@@ -136,7 +147,7 @@ public class Game {
 		int alfabet = 0;
 		if (guessChar >= 'a' && guessChar <= 'z') {
 			alfabet = guessChar - 'a';
-		} 
+		}
 		else if (guessChar >= 'A' && guessChar <= 'Z') {
 			alfabet = guessChar - 'A';
 		}
@@ -144,7 +155,7 @@ public class Game {
 			if (!this.guessed[alfabet]) {
 				this.updateSituation(guessChar);
 				this.guessed[alfabet] = true;
-			} 
+			}
 			else
 				System.out.println("!!!GUESSED BEFORE!!!");
 		}
@@ -152,12 +163,15 @@ public class Game {
 			System.out.println("!!!WRONG INPUT!!!");
 
 	}
-	
+
 	/**
-	 * This method will update situation of game with guessed characters
-	 * @param guessChar char
+	 * Updates the 'situation' string based on the player's guess.
+	 * If the guess is correct, the corresponding underscores are replaced with the letter.
+	 * If the guess is incorrect, the player loses a life (xp).
+	 *
+	 * @param guessChar The character guessed by the player.
 	 */
-	private void updateSituation(char guessChar) {
+	public void updateSituation(char guessChar) {
 		boolean rigthGuess = false;
 		int size = this.situation.length(), differ = 'a' - 'A';
 		String res = "";
@@ -184,20 +198,22 @@ public class Game {
 			System.out.println("RIGHT GUESS ^_^");
 		this.situation = res;
 	}
-	
+
 	/**
-	 * This method will set decimal two digits
-	 * @param f float
-	 * @return float
+	 * Formats a float to two decimal places.
+	 *
+	 * @param f The float to format.
+	 * @return The formatted float.
 	 */
-	private float twoDecimalView(float f){
+	public float twoDecimalView(float f){
 		int x = (int)(f*100);
 		return ((float)x)/(float)100;
 	}
-	
+
 	/**
-	 * This method will calculate and return score of player after the game ends
-	 * @return float
+	 * Calculates the final score of the player based on remaining lives (xp) and time taken.
+	 *
+	 * @return The player's final score.
 	 */
 	public float finalScore() {
 		float surat = 1000*this.player.xp;
@@ -205,10 +221,12 @@ public class Game {
 		float makhraj = (float)(Math.sqrt(Math.log(t)/Math.log(2)));
 		return twoDecimalView(surat/makhraj);
 	}
-	
+
 	/**
-	 * This method will show if game is over or no
-	 * @return boolean
+	 * Checks if the game is over, either by the player winning or losing.
+	 * Prints a corresponding message if the game has ended.
+	 *
+	 * @return {@code true} if the game is over, {@code false} otherwise.
 	 */
 	public boolean gameIsOver() {
 		if(toGuess == 0){
@@ -223,9 +241,10 @@ public class Game {
 		}
 		return (!this.player.isAlive() || toGuess == 0);
 	}
-	
+
 	/**
-	 * This method will show the state of game consist of gussed characters and score
+	 * Displays the current state of the game, including the player's score,
+	 * the partially guessed sentence, wrong guesses, and a graphical representation of the hangman.
 	 */
 	public void showState() {
 		System.out.println("Your score: " + (int)this.player.xp);

@@ -3,38 +3,49 @@ package poroje4;
 import java.util.ArrayList;
 
 /**
- * <h1> Medicine </h1>
- * Declaration of Medicine class
+ * Represents a medicine in the hospital management system. This class stores
+ * information about a medicine, including its name.
+ *
+ * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Medicine {
 	private String name;
 	static ArrayList<Medicine> medicines = new ArrayList<Medicine>();
 
 	/**
-	 * The Medicine contractor
-	 * @param name to set
+	 * Constructs a new Medicine object with the given name.
+	 *
+	 * @param name The name of the medicine.
 	 */
 	public Medicine(String name) {
 		this.setName(name);
 		medicines.add(this);
 	}
+
 	/**
-	 * @return the name
+	 * Gets the name of the medicine.
+	 *
+	 * @return The name of the medicine.
 	 */
-	String getName() {
+	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param name the name to set
+	 * Sets the name of the medicine.
+	 *
+	 * @param name The name to set.
 	 */
-	void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * This method will return a list of Diseases
-	 * @return Disease[]
+	 * Retrieves all diseases that this medicine can be used to treat.
+	 *
+	 * @return An array of {@link Disease} objects.
 	 */
 	public Disease[] getAllDiseases() {
 		Disease[] result = new Disease[Disease.diseases.size()];
@@ -46,8 +57,9 @@ public class Medicine {
 	}
 
 	/**
-	 * This method will return a list of Patients
-	 * @return Patient[]
+	 * Retrieves all patients who are currently prescribed this medicine.
+	 *
+	 * @return An array of {@link Patient} objects.
 	 */
 	public Patient[] getAllPatients() {
 		int i = 0;
@@ -67,8 +79,9 @@ public class Medicine {
 	}
 
 	/**
-	 * This method will return a list of Medicines
-	 * @return Medicine[]
+	 * Retrieves all medicines that have been created in the system.
+	 *
+	 * @return An array of all {@link Medicine} objects.
 	 */
 	public static Medicine[] getAllMedicines() {
 		Medicine[] result = new Medicine[medicines.size()];

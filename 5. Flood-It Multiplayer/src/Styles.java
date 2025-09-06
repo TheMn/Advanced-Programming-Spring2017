@@ -9,17 +9,27 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * A utility class that provides static methods for styling Swing components.
+ * This class contains inner classes for different parts of the application,
+ * each with methods for styling specific components.
+ *
+ * @author TheMn
+ * @version 1.1
+ */
 public class Styles {
 
 	/**
-	 * All styles of the client page will set here as an inner class.
+	 * An inner class that provides styles for the single-player game.
+	 *
 	 * @author TheMn
 	 */
 	public static class Single {
 
 		/**
-		 * This method will set frame style
-		 * @param gameFrame {@link JFrame}
+		 * Applies a standard style to a {@link JFrame}.
+		 *
+		 * @param gameFrame The frame to style.
 		 */
 		public static void frame(JFrame gameFrame) {
 			gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,17 +42,18 @@ public class Styles {
 
 		}
 	}
-	
+
 	/**
-	 * All styles of the client page will set here as an inner class.
-	 * 
+	 * An inner class that provides styles for the client application.
+	 *
 	 * @author TheMn
 	 */
 	public static class Client {
 
 		/**
-		 * This method will set messages style
-		 * @param messeges {@link JLabel}
+		 * Applies a standard style to a message {@link JLabel}.
+		 *
+		 * @param messeges The label to style.
 		 */
 		public static void messages(JLabel messeges) {
 			messeges.setText("Waiting for opponent to connect...");
@@ -53,17 +64,18 @@ public class Styles {
 			messeges.setOpaque(true);
 		}
 	}
-	
+
 	/**
-	 * All styles of the main page will set here as an inner class.
-	 * 
+	 * An inner class that provides styles for the main class of the application.
+	 *
 	 * @author TheMn
 	 */
 	public static class MainClass {
 
 		/**
-		 * This method will set frame style
-		 * @param firstFrame {@link JFrame}
+		 * Applies a standard style to a {@link JFrame}.
+		 *
+		 * @param firstFrame The frame to style.
 		 */
 		public static void frame(JFrame firstFrame) {
 			firstFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,10 +89,11 @@ public class Styles {
 		}
 
 		/**
-		 * This method will set headers styles
-		 * @param headerLabel {@link JLabel}
-		 * @param type {@link Integer}
-		 * @param size {@link Integer}
+		 * Applies a standard style to a header {@link JLabel}.
+		 *
+		 * @param headerLabel The label to style.
+		 * @param type        The font style (e.g., {@link Font#PLAIN}).
+		 * @param size        The font size.
 		 */
 		public static void header(JLabel headerLabel, int type, int size) {
 			headerLabel.setFont(new Font("Times New Roman", type, size));
@@ -90,10 +103,11 @@ public class Styles {
 		}
 
 		/**
-		 * This method will set {@link JTextField} styles
-		 * @param txtField {@link JTextField}
-		 * @param type {@link Integer}
-		 * @param size {@link Integer}
+		 * Applies a standard style to a {@link JTextField}.
+		 *
+		 * @param txtField The text field to style.
+		 * @param type     The font style (e.g., {@link Font#PLAIN}).
+		 * @param size     The font size.
 		 */
 		public static void txtField(JTextField txtField, int type, int size) {
 			txtField.setFont(new Font("Consolas", type, size));
@@ -104,10 +118,11 @@ public class Styles {
 		}
 
 		/**
-		 * This method will set {@link JButton} styles
-		 * @param button {@link JButton}
-		 * @param type {@link Integer}
-		 * @param size {@link Integer}
+		 * Applies a standard style to a {@link JButton}.
+		 *
+		 * @param button The button to style.
+		 * @param type   The font style (e.g., {@link Font#PLAIN}).
+		 * @param size   The font size.
 		 */
 		public static void button(JButton button, int type, int size) {
 			button.setFont(new Font("Times New Roman", type, size));
@@ -120,16 +135,16 @@ public class Styles {
 	}
 
 	/**
-	 * All styles of the welcome page will set here as an inner class.
-	 * 
+	 * An inner class that provides styles for the welcome screen.
+	 *
 	 * @author TheMn
 	 */
 	public static class Welcome {
 
 		/**
-		 * This method will set Frame styles
-		 * 
-		 * @param welcomeFrame {@link JFrame}
+		 * Applies a standard style to a welcome {@link JFrame}.
+		 *
+		 * @param welcomeFrame The frame to style.
 		 */
 		public static void frame(JFrame welcomeFrame) {
 			welcomeFrame.setTitle("Welcome");
@@ -143,10 +158,9 @@ public class Styles {
 		}
 
 		/**
-		 * This method will set button styles
-		 * 
-		 * @param button
-		 *            the button to be designed
+		 * Applies a standard style to a {@link JButton}.
+		 *
+		 * @param button The button to style.
 		 */
 		public static void button(JButton button) {
 			button.setForeground(Color.WHITE);
@@ -157,10 +171,9 @@ public class Styles {
 		}
 
 		/**
-		 * This method will set textField styles
-		 * 
-		 * @param textField
-		 *            the textField to be designed
+		 * Applies a standard style to a {@link JTextField}.
+		 *
+		 * @param textField The text field to style.
 		 */
 		public static void txtField(JTextField textField) {
 			textField.setFont(new Font("Consolas", Font.PLAIN, 28));
