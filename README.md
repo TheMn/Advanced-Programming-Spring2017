@@ -1,4 +1,4 @@
-# Java Projects Collection
+# Java Projects Collection - Spring 2017
 
 This repository contains a collection of five Java projects, each demonstrating different programming concepts and skills.
 
