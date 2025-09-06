@@ -1,41 +1,48 @@
 package poroje3;
 
 /**
- * The Player class implementation of HangmanPlayer
+ * Represents a player in the Hangman game. This class stores the player's name
+ * and their remaining lives (xp).
+ *
  * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Player {
-	
+
 	protected String name;
 	protected float xp;
-	
+
 	/**
-	 * The Player contractor
-	 * @param name String the player name
+	 * Constructs a new Player object with the given name and initializes their lives (xp) to 6.
+	 *
+	 * @param name The name of the player.
 	 */
-	Player(String name){
+	public Player(String name){
 		this.setName(name);
 		this.setXp();
 	}
-	
+
 	/**
-	 * This method will set String name to player name
-	 * @param name String
+	 * Sets the name of the player.
+	 *
+	 * @param name The name of the player.
 	 */
-	private void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
-	 * This method will set start point equals to 6
+	 * Sets the initial number of lives (xp) for the player to 6.
 	 */
-	private void setXp() {
+	public void setXp() {
 		this.xp = 6;
 	}
-	
+
 	/**
-	 * This method will return if Player is in game or not
-	 * @return boolean that shows player is in game or not
+	 * Checks if the player is still alive (i.e., has more than 0 lives).
+	 *
+	 * @return {@code true} if the player is alive, {@code false} otherwise.
 	 */
 	public boolean isAlive() {
 		return (this.xp > 0);

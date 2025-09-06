@@ -5,16 +5,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * A simple timer component that displays the elapsed time since it was started.
+ * The timer updates every second.
+ *
+ * @author TheMn
+ * @version 1.1
+ */
 public class GameTimer extends JPanel {
 
 	private static final long serialVersionUID = -2941011375311949489L;
 	final JLabel label = new JLabel("", SwingConstants.CENTER);
 
 	/**
-	 * A GameTimer is a Timer that shows the game time running and its starts
-	 * when the game starts.
+	 * Constructs a new GameTimer. The timer starts immediately upon creation.
 	 */
-	GameTimer() {
+	public GameTimer() {
 
 		final long startTime = System.currentTimeMillis();
 		setSize(200, 100);
@@ -27,7 +33,8 @@ public class GameTimer extends JPanel {
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			/**
-			 * The thread runs in background.
+			 * The task that is executed by the timer every second. It updates the
+			 * label with the elapsed time.
 			 */
 			public void run() {
 				Long timeCalculated = (System.currentTimeMillis() - startTime) / 1000;
@@ -38,8 +45,9 @@ public class GameTimer extends JPanel {
 	}
 
 	/**
-	 * This method will return the time of the game.
-	 * @return {@link Integer}
+	 * Gets the current elapsed time in seconds.
+	 *
+	 * @return The elapsed time in seconds, or {@code null} if the time cannot be parsed.
 	 */
 	public Integer getTime() {
 		Integer res = null;

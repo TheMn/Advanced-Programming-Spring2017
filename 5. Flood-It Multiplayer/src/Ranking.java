@@ -3,17 +3,19 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * The Ranking class implementation a copy of my HangmanRanking for project 3
- * 
+ * A utility class for handling player rankings. This class provides a method
+ * for retrieving a player's last recorded score from a file.
+ *
  * @author TheMn
+ * @version 1.1
  */
 public class Ranking {
 
 	/**
-	 * This method will check players and set its score to its Field
-	 * 
-	 * @param name the name
-	 * @return double
+	 * Retrieves the last recorded score for a player from the rankings file.
+	 *
+	 * @param name The name of the player.
+	 * @return The player's last recorded score, or 0 if no record is found.
 	 */
 	public static double lastRecord(String name) {
 		double record = 0;
@@ -38,7 +40,7 @@ public class Ranking {
 
 //	/**
 //	 * This method will add a player to rankings file
-//	 * 
+//	 *
 //	 * @param player
 //	 *            Player
 //	 * @param score
@@ -56,7 +58,7 @@ public class Ranking {
 //
 //	/**
 //	 * This method will change place of two index String array
-//	 * 
+//	 *
 //	 * @param s
 //	 *            String[]
 //	 * @param x
@@ -72,7 +74,7 @@ public class Ranking {
 //
 //	/**
 //	 * This method will change place of two index float array
-//	 * 
+//	 *
 //	 * @param a
 //	 *            float[]
 //	 * @param x
@@ -88,7 +90,7 @@ public class Ranking {
 //
 //	/**
 //	 * This method will sort two arrays
-//	 * 
+//	 *
 //	 * @param scores
 //	 *            float[]
 //	 * @param names

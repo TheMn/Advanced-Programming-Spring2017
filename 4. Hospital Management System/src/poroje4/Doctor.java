@@ -4,17 +4,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * <h1> Doctor </h1>
- * Declaration of Doctor class
+ * Represents a doctor in the hospital management system. This class extends the
+ * {@link Person} class and includes information specific to doctors, such as their patients.
+ *
+ * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Doctor extends Person {
 	ArrayList<Patient> doctorsPatients = new ArrayList<Patient>();
 	static ArrayList<Doctor> doctors = new ArrayList<Doctor>();
-	
+
 	/**
-	 * The Doctor contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
+	 * Constructs a new Doctor object with the given first and last names.
+	 * A unique ID is automatically generated.
+	 *
+	 * @param firstName The doctor's first name.
+	 * @param lastName The doctor's last name.
 	 */
 	public Doctor(String firstName, String lastName) {
 		super(firstName, lastName);
@@ -23,10 +29,11 @@ public class Doctor extends Person {
 	}
 
 	/**
-	 * The Doctor contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param id the identifier
+	 * Constructs a new Doctor object with the given first name, last name, and ID.
+	 *
+	 * @param firstName The doctor's first name.
+	 * @param lastName The doctor's last name.
+	 * @param id The doctor's ID.
 	 */
 	public Doctor(String firstName, String lastName, long id) {
 		super(firstName, lastName);
@@ -35,12 +42,13 @@ public class Doctor extends Person {
 	}
 
 	/**
-	 * The Doctor contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param gender the gender
-	 * @param birthDate the birth date
-	 * @param id the identifier
+	 * Constructs a new Doctor object with the given personal details and ID.
+	 *
+	 * @param firstName The doctor's first name.
+	 * @param lastName The doctor's last name.
+	 * @param gender The doctor's gender.
+	 * @param birthDate The doctor's birth date.
+	 * @param id The doctor's ID.
 	 */
 	public Doctor(String firstName, String lastName, String gender,
 			String birthDate, long id) {
@@ -48,43 +56,48 @@ public class Doctor extends Person {
 		this.idGenerator(id);
 		doctors.add(this);
 	}
-	
+
 	/**
-	 * This method will add a Patient to Doctor patients
-	 * @param patient to add
+	 * Adds a patient to this doctor's list of patients.
+	 *
+	 * @param patient The patient to add.
 	 */
 	public void addPatient(Patient patient) {
 		this.doctorsPatients.add(patient);
 	}
-	
+
 	/**
-	 * This method will add a number of patients to Doctor patients
-	 * @param patients to add
+	 * Adds multiple patients to this doctor's list of patients.
+	 *
+	 * @param patients An ArrayList of patients to add.
 	 */
 	public void addAllPatients(ArrayList<Patient> patients) {
 		this.doctorsPatients.addAll(patients);
 	}
-	
+
 	/**
-	 * This method will remove a patient from Doctor patients
-	 * @param patient we want to remove
-	 * @return boolean true if it was in array
+	 * Removes a patient from this doctor's list of patients.
+	 *
+	 * @param patient The patient to remove.
+	 * @return {@code true} if the patient was successfully removed, {@code false} otherwise.
 	 */
 	public boolean removePatient(Patient patient) {
 		return this.doctorsPatients.remove(patient);
 	}
-	
+
 	/**
-	 * This method will remove a number of patients from Doctor patients
-	 * @param patients to remove
+	 * Removes multiple patients from this doctor's list of patients.
+	 *
+	 * @param patients An ArrayList of patients to remove.
 	 */
 	public void removeAllPatients(ArrayList<Patient> patients) {
 		this.doctorsPatients.removeAll(patients);
 	}
-	
+
 	/**
-	 * This method will return an array contains all Doctor patients
-	 * @return a Patient array
+	 * Retrieves all patients assigned to this doctor.
+	 *
+	 * @return An array of {@link Patient} objects.
 	 */
 	public Patient[] getAllPatients() {
 		Patient[] result = new Patient[this.doctorsPatients.size()];
@@ -94,10 +107,11 @@ public class Doctor extends Person {
 		}
 		return result;
 	}
-	
+
 	/**
-	 * This method will return an array contains all Doctors
-	 * @return a Doctor array
+	 * Retrieves all doctors that have been created in the system.
+	 *
+	 * @return An array of all {@link Doctor} objects.
 	 */
 	public static Doctor[] getAllDoctors() {
 		Doctor[] result = new Doctor[doctors.size()];
@@ -107,9 +121,9 @@ public class Doctor extends Person {
 		}
 		return result;
 	}
-	
+
 	/**
-	 * This method will set an unique id to a Doctor
+	 * Generates a unique ID for the doctor.
 	 */
 	public void idGenerator() {
 		long identifier;
@@ -117,10 +131,12 @@ public class Doctor extends Person {
 		identifier = (long)951.e6 + (long)rand.nextInt((int)1.e6);
 		this.idGenerator(identifier);
 	}
-	
+
 	/**
-	 * This method will set id to Doctor if it was not created before
-	 * @param id the identifier of doctor
+	 * Sets the doctor's ID, ensuring it is unique. If the provided ID already exists,
+	 * a new unique ID is generated.
+	 *
+	 * @param id The desired ID for the doctor.
 	 */
 	public void idGenerator(long id) {
 		boolean wasCreated = false;

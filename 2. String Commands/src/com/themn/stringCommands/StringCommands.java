@@ -4,19 +4,23 @@ package com.themn.stringCommands;
 import java.util.Scanner;
 
 /**
- * <h1> StringCommands </h1>
- * <h2> (Advanced Programming Second Project) </h2>
+ * This class serves as the main entry point for the StringCommands application.
+ * It reads a line of input containing string manipulation commands, parses them,
+ * and calls the appropriate methods from the {@link Methods} class to execute the commands.
+ *
  * @author Amirhossein Mahdinejad
- * <p> Mail: mahdinejad.amirhossein@gmail.com </p>
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class StringCommands {
 
     /**
-     * This function will help us to know what method should be called
-     * @param s {@code String} we want to check it
-     * @return the index of Method if is existent and -1 otherwise
+     * Determines which string manipulation method to call based on a given command string.
+     *
+     * @param s The command string (e.g., "sort", "toLower").
+     * @return An integer representing the index of the method in a predefined list, or -1 if the command is not found.
      */
-    private static int whatMethod(String s){
+    public static int whatMethod(String s){
         String []methods = {"sort", "toLower", "toUpper", "isPalindromes",
                 "rotate", "indexOf", "substring", "split"};
         for (int i = 0; i < methods.length; i++) {
@@ -27,10 +31,12 @@ public class StringCommands {
     }
 
     /**
-     * This function will detect arguments and call methods to do the commands
-     * @param s {@code String} input we want to work on it
+     * Parses a command string, extracts the arguments, and calls the corresponding method from the {@link Methods} class.
+     * The result of the method call is printed to the console.
+     *
+     * @param s The full command string, including the method name and arguments (e.g., "sort(myString,0,7)").
      */
-    private static void callMethod(String s) {
+    public static void callMethod(String s) {
         int parantezBaz = Methods.indexOf(s, "("), parantezBaste = s.length()-1;
         String []arguments = Methods.substring(s, parantezBaz+1, parantezBaste-1).split(",");
 
@@ -79,8 +85,11 @@ public class StringCommands {
     }
 
     /**
-     * Main method will set input and call other functions
-     * @param args default
+     * The main method, which serves as the entry point for the application.
+     * It reads a line of input from the console, splits it into individual commands,
+     * and calls {@link #callMethod(String)} for each command.
+     *
+     * @param args Command line arguments (not used).
      */
     public static void main(String args[]){
         Scanner scanner = new Scanner(System.in);

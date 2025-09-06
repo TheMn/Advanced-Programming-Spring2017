@@ -5,33 +5,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * <h1> HospitalManager </h1>
- * <h2> (Advanced Programming Fourth Project) </h2>
+ * The main class for the Hospital Management System. This class provides a
+ * command-line interface for interacting with the system, allowing users to
+ * create and manage patients, doctors, diseases, and medicines.
+ *
  * @author Amirhossein Mahdinejad
- * <p> Student Code: 950122680001, Mail: mt.lroc@outlook.com </p>
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class HospitalManager {
 	private final Scanner sc = new Scanner(System.in);
-	
+
 	/**
-	 * The main method
-	 * @param args default argument
+	 * The main method, which serves as the entry point for the application.
+	 *
+	 * @param args Command line arguments (not used).
 	 */
 	public static void main(String[] args) {
 		new HospitalManager();
 	}
-	
+
 	/**
-	 * HospitalManager contractor
+	 * Constructs a new HospitalManager object and starts the main application loop.
 	 */
-	HospitalManager(){
+	public HospitalManager(){
 		String exitAnswer = "no";
 		do {
 			System.out.println("What do you want to do ?");
 			System.out.println("[1]exit   [2]new object   [3]show objects   [4]use methods");
 			try{
 				switch (Integer.parseInt(sc.next())) {
-				
+
 				/**
 				 * User wants to exit
 				 */
@@ -39,63 +43,63 @@ public class HospitalManager {
 					System.out.println("do you want to exit ? (yes / no)");
 					exitAnswer = sc.next();
 					break;
-					
+
 					/**
 					 * User wants to add new object
 					 */
 				case 2:
 					System.out.println("what object do you want to add ?");
 					System.out.println("[1]Patient   [2]Doctor   [3]Disease   [4]Medicine");
-					
+
 					switch (Integer.parseInt(sc.next())) {
-					
+
 					/**
 					 * Create new Patient
 					 */
 					case 1:
 						createPatient(-1);
 						break;
-						
+
 					/**
 					 * Create new Doctor
 					 */
 					case 2:
 						createDoctor(-1);
 						break;
-					
+
 					/**
 					 * Create new Disease
 					 */
 					case 3:
 						createDisease(-1);
 						break;
-					
+
 					/**
 					 * Create new Medicine
 					 */
 					case 4:
 						createMedicine(-1);
 						break;
-						
+
 					default:
 						System.err.println("Please just enter default numbers");
 						break;
 					}
 					break;
-					
+
 					/**
-					 * User wants to see all created objects				
+					 * User wants to see all created objects
 					 */
 				case 3:
 					showObjects();
 					break;
-					
+
 				case 4:
 					System.out.println("which Object do you want to access ?");
 					System.out.println("[1]Patient   [2]Doctor   [3]Disease   [4]Medicine");
-					
+
 					switch (Integer.parseInt(sc.next())) {
-					
+
 						/**
 						 * call Patient classes
 						 */
@@ -105,16 +109,16 @@ public class HospitalManager {
 							System.out.println("[" + (i+1) + "]" + Patient.patients.get(i).getDescription());
 						}
 						int patientIndex = Integer.parseInt(sc.next()) - 1;
-						
+
 						System.out.println("which method do you want to access ?");
 						System.out.println("[1]getDoctor\n[2]setDoctor\n[3]addDisease\n[4]curedDisease\n[5]getAllDiseases\n[6]getAllMedicines\n[7]getAllPatients");
 						int methodIndex = Integer.parseInt(sc.next());
-						
+
 						callPatientMethods(patientIndex, methodIndex);
 						break;
-						
+
 						/**
-						 * call Doctor classes 
+						 * call Doctor classes
 						 */
 					case 2:
 						System.out.println("For which doctor ?");
@@ -122,14 +126,14 @@ public class HospitalManager {
 							System.out.println("[" + (i+1) + "]" + Doctor.doctors.get(i).getDescription());
 						}
 						int doctorIndex = Integer.parseInt(sc.next()) - 1;
-						
+
 						System.out.println("which method do you want to access ?");
 						System.out.println("[1]addPatient\n[2]addAllPatients\n[3]removePatient\n[4]removeAllPatients\n[5]getAllPatients\n[6]getAllDoctors");
 						methodIndex = Integer.parseInt(sc.next());
-						
+
 						callDoctorMethods(doctorIndex, methodIndex);
 						break;
-						
+
 						/**
 						 * call Disease classes
 						 */
@@ -142,10 +146,10 @@ public class HospitalManager {
 						System.out.println("which method do you want to access ?");
 						System.out.println("[1]setName\n[2]getName\n[3]getAllInfected\n[4]addSymptoms\n[5]addAllSymptoms\n[6]removeSymptom\n[7]removeAllSymptoms\n[8]getAllSymptoms\n[9]addMedicine\n[10]addAllMedicines\n[11]removeMedicine\n[12]removeAllMedicines\n[13]getAllMedicines\n[14]getAllDiseases");
 						methodIndex = Integer.parseInt(sc.next());
-						
+
 						callDiseaseMethods(diseaseIndex, methodIndex);
 						break;
-						
+
 						/**
 						 * call Medicine classes
 						 */
@@ -158,16 +162,16 @@ public class HospitalManager {
 						System.out.println("which method do you want to access ?");
 						System.out.println("[1]setName\n[2]getName\n[3]getAllDiseases\n[4]getAllPatients\n[5]getAllMedicines");
 						methodIndex = Integer.parseInt(sc.next());
-						
+
 						callMedicineMethods(medicineIndex, methodIndex);
 						break;
-						
+
 					default:
 						System.err.println("Please just enter default inputs");
 						break;
 					}
 					break;
-					
+
 				default:
 					System.err.println("Please just enter default inputs");
 					break;
@@ -177,13 +181,13 @@ public class HospitalManager {
 			}
 		} while (!exitAnswer.equalsIgnoreCase("yes"));
 		sc.close();
-		
+
 	}
-	
+
 	/**
-	 * This method will show all created objects to user
+	 * Displays all created objects (doctors, patients, diseases, and medicines) to the user.
 	 */
-	private void showObjects(){
+	public void showObjects(){
 		System.out.println("Created Objects:");
 		if(!Doctor.doctors.isEmpty()){
 			System.out.println("---Doctors---");
@@ -210,12 +214,13 @@ public class HospitalManager {
 			}
 		}
 	}
-	
+
 	/**
-	 * This method will create a patient and set its doctor
-	 * @param whichDoctor
+	 * Creates a new patient based on user input and optionally assigns them to a doctor.
+	 *
+	 * @param whichDoctor The index of the doctor to assign the patient to, or -1 for no assignment.
 	 */
-	private void createPatient(int whichDoctor){
+	public void createPatient(int whichDoctor){
 		try{
 			System.out.println("Please enter patient id (or -1 if it has not id)");
 			String answerString = sc.next();
@@ -230,25 +235,25 @@ public class HospitalManager {
 			case 1:
 				System.out.println("Please enter Patients FirstName:");
 				String firstName = sc.next();
-				
+
 				System.out.println("Please enter Patients LastName:");
 				String lastName = sc.next();
-				
+
 				if(id == -1)
 					newPatient = new Patient(firstName, lastName);
 				else	newPatient = new Patient(firstName, lastName, id);
 				break;
-				
+
 			case 2:
 				System.out.println("Please enter Patients FirstName:");
 				firstName = sc.next();
-				
+
 				System.out.println("Please enter Patients LastName:");
 				lastName = sc.next();
-				
+
 				System.out.println("Please enter Patients Gender: (Male / Female)");
 				String gender = sc.next();
-				
+
 				System.out.println("Please enter Patients BirthDate: (YYYY.MM.DD)");
 				String birthDate = sc.next();
 
@@ -258,7 +263,7 @@ public class HospitalManager {
 				}
 				else	newPatient = new Patient(firstName, lastName, gender, birthDate, id);
 				break;
-				
+
 			default:
 				break;
 			}
@@ -270,12 +275,13 @@ public class HospitalManager {
 			System.err.println("Something in creating patient went wrong");
 		}
 	}
-	
+
 	/**
-	 * This method will create a doctor and set its patient
-	 * @param whichPatient
+	 * Creates a new doctor based on user input and optionally assigns a patient to them.
+	 *
+	 * @param whichPatient The index of the patient to assign to the doctor, or -1 for no assignment.
 	 */
-	private void createDoctor(int whichPatient){
+	public void createDoctor(int whichPatient){
 		try{
 			System.out.println("Please enter doctor id (or -1 if it has not id)");
 			String answerString = sc.next();
@@ -284,32 +290,32 @@ public class HospitalManager {
 			System.out.println("[2]FirstName, LastName, Gender, BirthDate");
 			int type = Integer.parseInt(sc.next());
 			long id = Long.parseLong(answerString);
-			
+
 			Doctor newDoctor = null;
 			switch (type) {
 
 			case 1:
 				System.out.println("Please enter Doctors FirstName:");
 				String firstName = sc.next();
-				
+
 				System.out.println("Please enter Doctors LastName:");
 				String lastName = sc.next();
-				
+
 				if(id == -1)
 					newDoctor = new Doctor(firstName, lastName);
 				else	newDoctor = new Doctor(firstName, lastName, id);
 				break;
-				
+
 			case 2:
 				System.out.println("Please enter Doctors FirstName:");
 				firstName = sc.next();
-				
+
 				System.out.println("Please enter Doctors LastName:");
 				lastName = sc.next();
-				
+
 				System.out.println("Please enter Doctors Gender: (Male / Female)");
 				String gender = sc.next();
-				
+
 				System.out.println("Please enter Doctors BirthDate: (YYYY.MM.DD)");
 				String birthDate = sc.next();
 
@@ -319,7 +325,7 @@ public class HospitalManager {
 				}
 				else	newDoctor = new Doctor(firstName, lastName, gender, birthDate, id);
 				break;
-				
+
 			default:
 				break;
 			}
@@ -331,12 +337,13 @@ public class HospitalManager {
 			System.err.println("Something in creating Doctor went wrong");
 		}
 	}
-	
+
 	/**
-	 * This method will create a disease and set its patient
-	 * @param whichPatient
+	 * Creates a new disease based on user input and optionally assigns it to a patient.
+	 *
+	 * @param whichPatient The index of the patient to assign the disease to, or -1 for no assignment.
 	 */
-	private void createDisease(int whichPatient){
+	public void createDisease(int whichPatient){
 		try{
 			System.out.println("Please enter Disease name:");
 			Disease newDisease = new Disease(sc.next());
@@ -347,12 +354,13 @@ public class HospitalManager {
 			System.err.println("Something in creating Disease went wrong");
 		}
 	}
-	
+
 	/**
-	 * This method will create a medicine and set its disease
-	 * @param whichDisease
+	 * Creates a new medicine based on user input and optionally assigns it to a disease.
+	 *
+	 * @param whichDisease The index of the disease to assign the medicine to, or -1 for no assignment.
 	 */
-	private void createMedicine(int whichDisease){
+	public void createMedicine(int whichDisease){
 		try{
 			System.out.println("Please enter Medicine name:");
 			Medicine newMedicine = new Medicine(sc.next());
@@ -363,16 +371,17 @@ public class HospitalManager {
 			System.err.println("Something in creating Medicine went wrong");
 		}
 	}
-	
+
 	/**
-	 * This method will call Medicine methods
-	 * @param medicineIndex which medicine
-	 * @param methodIndex which method
+	 * Calls methods on a specific {@link Medicine} object based on user input.
+	 *
+	 * @param medicineIndex The index of the medicine to call the method on.
+	 * @param methodIndex The index of the method to call.
 	 */
-	void callMedicineMethods(int medicineIndex, int methodIndex){
+	public void callMedicineMethods(int medicineIndex, int methodIndex){
 		//[1]setName\n[2]getName\n[3]getAllDiseases\n[4]getAllPatients\n[5]getAllMedicines
 		switch (methodIndex) {
-	
+
 		/**
 		 * Set name to Medicine
 		 */
@@ -387,7 +396,7 @@ public class HospitalManager {
 		case 2:
 			System.out.println("Medicine name: " + Medicine.medicines.get(medicineIndex).getName());
 			break;
-			
+
 		/**
 		 * Get all diseases of this medicine
 		 */
@@ -398,7 +407,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + diseasesToShow[i].getName());
 			}
 			break;
-			
+
 		/**
 		 * Get all patients of this medicine
 		 */
@@ -409,7 +418,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + patientsToShow[i].getDescription());
 			}
 			break;
-			
+
 		/**
 		 * Get all medicines
 		 */
@@ -420,20 +429,21 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + allMedicines[i].getName());
 			}
 			break;
-		
+
 		default:
 			break;
 		}
 	}
-	
+
 	/**
-	 * This method will call Disease methods
-	 * @param diseaseIndex which disease
-	 * @param methodIndex which method
+	 * Calls methods on a specific {@link Disease} object based on user input.
+	 *
+	 * @param diseaseIndex The index of the disease to call the method on.
+	 * @param methodIndex The index of the method to call.
 	 */
-	void callDiseaseMethods(int diseaseIndex, int methodIndex){
+	public void callDiseaseMethods(int diseaseIndex, int methodIndex){
 		switch (methodIndex) {
-		
+
 		/**
 		 * Set name to disease
 		 */
@@ -441,7 +451,7 @@ public class HospitalManager {
 			System.out.println("Please enter disease name:");
 			Disease.diseases.get(diseaseIndex).setName(sc.next());
 			break;
-		
+
 		/**
 		 * Get the name of disease
 		 */
@@ -459,7 +469,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + allInfected[i].getDescription());
 			}
 			break;
-			
+
 		/**
 		 * Add a symptom to this disease
 		 */
@@ -468,7 +478,7 @@ public class HospitalManager {
 			String symptom = sc.next();
 			Disease.diseases.get(diseaseIndex).symptoms.add(symptom);
 			break;
-			
+
 		/**
 		 * Add a list of symptoms to this disease
 		 */
@@ -483,7 +493,7 @@ public class HospitalManager {
 			}
 			Disease.diseases.get(diseaseIndex).addAllSymptoms(symptomNames);
 			break;
-			
+
 		/**
 		 * Remove a symptom from disease symptoms
 		 */
@@ -500,7 +510,7 @@ public class HospitalManager {
 			symptom = sc.next();
 			Disease.diseases.get(diseaseIndex).removeSymptom(allSymptoms.get(Integer.parseInt(symptom) - 1));
 			break;
-			
+
 		/**
 		 * Remove a list of symptoms from disease symptoms
 		 */
@@ -523,7 +533,7 @@ public class HospitalManager {
 			}
 			Disease.diseases.get(diseaseIndex).removeAllSymptoms(symptomNames);
 			break;
-			
+
 		/**
 		 * Get all symptoms of this disease
 		 */
@@ -534,7 +544,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + thisDiseaseSymptoms[i]);
 			}
 			break;
-		
+
 		/**
 		 * Add a Medicine to disease medicines
 		 */
@@ -568,7 +578,7 @@ public class HospitalManager {
 			}
 			Disease.diseases.get(diseaseIndex).addAllMedicines(medicinesToAdd);
 			break;
-			
+
 		/**
 		 * Remove a medicine from disease medicines
 		 */
@@ -580,7 +590,7 @@ public class HospitalManager {
 			String medicineToRemove = sc.next();
 			Disease.diseases.get(diseaseIndex).removeMedicine(Medicine.medicines.get(Integer.parseInt(medicineToRemove) - 1));
 			break;
-			
+
 		/**
 		 * Remove a list of medicines from disease medicines
 		 */
@@ -610,7 +620,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + medicinesToShow[i].getName());
 			}
 			break;
-		
+
 		/**
 		 * Get all diseases
 		 */
@@ -621,20 +631,21 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + allDiseases[i].getName());
 			}
 			break;
-			
+
 		default:
 			break;
 		}
 	}
-	
+
 	/**
-	 * This method will call doctors methods
-	 * @param doctorIndex which patient
-	 * @param methodIndex which method
+	 * Calls methods on a specific {@link Doctor} object based on user input.
+	 *
+	 * @param doctorIndex The index of the doctor to call the method on.
+	 * @param methodIndex The index of the method to call.
 	 */
-	void callDoctorMethods(int doctorIndex, int methodIndex){
+	public void callDoctorMethods(int doctorIndex, int methodIndex){
 		switch (methodIndex) {
-		
+
 		/**
 		 * Add a patient to list of doctors patients
 		 */
@@ -669,7 +680,7 @@ public class HospitalManager {
 			}
 			Doctor.doctors.get(doctorIndex).addAllPatients(patientsToAdd);
 			break;
-		
+
 		/**
 		 * Remove a patient from doctors patients
 		 */
@@ -682,7 +693,7 @@ public class HospitalManager {
 			userAnswer = sc.next();
 			Doctor.doctors.get(doctorIndex).removePatient(Patient.patients.get(Integer.parseInt(userAnswer)-1));
 			break;
-		
+
 		/**
 		 * Remove a list of patients from doctors patients
 		 */
@@ -701,7 +712,7 @@ public class HospitalManager {
 			}
 			Doctor.doctors.get(doctorIndex).removeAllPatients(patientsToRemove);
 			break;
-		
+
 		/**
 		 * Get all patients of this doctor
 		 */
@@ -723,18 +734,19 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + allDoctors[i].getDescription());
 			}
 			break;
-			
+
 		default:
 			break;
 		}
 	}
-	
+
 	/**
-	 * This method will call patients methods
-	 * @param patientIndex which patient
-	 * @param methodIndex which method
+	 * Calls methods on a specific {@link Patient} object based on user input.
+	 *
+	 * @param patientIndex The index of the patient to call the method on.
+	 * @param methodIndex The index of the method to call.
 	 */
-	void callPatientMethods(int patientIndex, int methodIndex){
+	public void callPatientMethods(int patientIndex, int methodIndex){
 		switch (methodIndex) {
 		/**
 		 * Get patients doctor
@@ -742,7 +754,7 @@ public class HospitalManager {
 		case 1:
 			System.out.println(Patient.patients.get(patientIndex).getDoctor().getDescription());
 			break;
-			
+
 		/**
 		 * Set patients doctor
 		 */
@@ -758,7 +770,7 @@ public class HospitalManager {
 			else
 				Patient.patients.get(patientIndex).setDoctor(Doctor.doctors.get(Integer.parseInt(userAnswer)-1));
 			break;
-			
+
 		/**
 		 * Add disease to patients diseases
 		 */
@@ -774,7 +786,7 @@ public class HospitalManager {
 			else
 				Patient.patients.get(patientIndex).addDisease(Disease.diseases.get(Integer.parseInt(userAnswer)-1));
 			break;
-			
+
 		/**
 		 * Cured disease of patient
 		 */
@@ -786,7 +798,7 @@ public class HospitalManager {
 			userAnswer = sc.next();
 			Patient.patients.get(patientIndex).curedDisease(Disease.diseases.get(Integer.parseInt(userAnswer)-1));
 			break;
-		
+
 		/**
 		 * Get all diseases of patient
 		 */
@@ -797,7 +809,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + diseasesToShow[i].getName());
 			}
 			break;
-			
+
 		/**
 		 * Get all medicines of patient
 		 */
@@ -808,7 +820,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + medicinesToShow[i].getName());
 			}
 			break;
-		
+
 		/**
 		 * Get all patients
 		 */
@@ -819,7 +831,7 @@ public class HospitalManager {
 				System.out.println((i+1) + ": " + patientsToShow[i].getDescription());
 			}
 			break;
-			
+
 		default:
 			break;
 		}

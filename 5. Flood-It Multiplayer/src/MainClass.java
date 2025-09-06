@@ -15,10 +15,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * <h1>Floodit</h1> 
- * <h2>(Advanced Programming Final Project)</h2>
- * Player will enter their name and select the game mode.
- * 
+ * The main class for the Flood-It game. This class provides the entry point
+ * for the application and allows the user to choose between single-player and
+ * multiplayer modes.
+ *
  * @author TheMn
  * @version 1.1
  */
@@ -31,9 +31,9 @@ public class MainClass {
 	// TODO add chat server (or run chat on this server)
 
 	/**
-	 * Floodit main method.
-	 * 
-	 * @param args default argument
+	 * The main method, which serves as the entry point for the application.
+	 *
+	 * @param args Command line arguments (not used).
 	 */
 	public static void main(String[] args) {
 		try {
@@ -47,9 +47,10 @@ public class MainClass {
 	}
 
 	/**
-	 * Player has two options of singlePlayer or multiPlayer to choose.
-	 * 
-	 * @throws IOException {@link Throwable}
+	 * Constructs a new MainClass object and displays the game mode selection
+	 * dialog.
+	 *
+	 * @throws IOException if an I/O error occurs.
 	 */
 	public MainClass() throws IOException {
 		String[] options = new String[] { "SinglePlayer", "MultiPlayer" };
@@ -83,9 +84,9 @@ public class MainClass {
 	}
 
 	/**
-	 * Inner class ClientMaker is a panel that shows what is need to join game
-	 * as a client.
-	 * 
+	 * An inner class that creates a panel for joining a multiplayer game as a
+	 * client.
+	 *
 	 * @author TheMn
 	 */
 	static class ClientMaker extends JPanel {
@@ -95,7 +96,7 @@ public class MainClass {
 		JButton join = new JButton("Click here to Join server");
 
 		/**
-		 * Client will enter the serverAddress and port.
+		 * Constructs a new ClientMaker panel.
 		 */
 		ClientMaker() {
 			setLayout(new GridLayout(4, 1, 0, 3));
@@ -143,9 +144,9 @@ public class MainClass {
 	}
 
 	/**
-	 * Inner class ServerMaker is a panel that shows what is need to start a
+	 * An inner class that creates a panel for hosting a multiplayer game as a
 	 * server.
-	 * 
+	 *
 	 * @author TheMn
 	 */
 	class ServerMaker extends JPanel {
@@ -155,7 +156,7 @@ public class MainClass {
 		JButton host = new JButton("Click here to Host server");
 
 		/**
-		 * Host will enter the port number.
+		 * Constructs a new ServerMaker panel.
 		 */
 		ServerMaker() {
 			setLayout(new GridLayout(4, 1, 0, 3));

@@ -4,43 +4,52 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * <h1> Patient </h1>
- * Declaration of Patient class
+ * Represents a patient in the hospital management system. This class extends the
+ * {@link Person} class and includes information specific to patients, such as their
+ * diseases and prescribed medicines.
+ *
+ * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Patient extends Person{
 	ArrayList<Disease> patientsDiseases = new ArrayList<Disease>();
 	static ArrayList<Patient> patients = new ArrayList<Patient>();
-	
+
 	/**
-	 * The Patient contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
+	 * Constructs a new Patient object with the given first and last names.
+	 * A unique ID is automatically generated.
+	 *
+	 * @param firstName The patient's first name.
+	 * @param lastName The patient's last name.
 	 */
 	public Patient(String firstName, String lastName) {
 		super(firstName, lastName);
 		this.idGenerator();
 		patients.add(this);
 	}
-	
+
 	/**
-	 * The Patient contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param id the identifier
+	 * Constructs a new Patient object with the given first name, last name, and ID.
+	 *
+	 * @param firstName The patient's first name.
+	 * @param lastName The patient's last name.
+	 * @param id The patient's ID.
 	 */
 	public Patient(String firstName, String lastName, long id) {
 		super(firstName, lastName);
 		this.idGenerator(id);
 		patients.add(this);
 	}
-	
+
 	/**
-	 * The Patient contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param gender the gender
-	 * @param birthDate the birth date
-	 * @param id the identifier
+	 * Constructs a new Patient object with the given personal details and ID.
+	 *
+	 * @param firstName The patient's first name.
+	 * @param lastName The patient's last name.
+	 * @param gender The patient's gender.
+	 * @param birthDate The patient's birth date.
+	 * @param id The patient's ID.
 	 */
 	public Patient(String firstName, String lastName, String gender,
 			String birthDate, long id) {
@@ -48,10 +57,11 @@ public class Patient extends Person{
 		this.idGenerator(id);
 		patients.add(this);
 	}
-	
+
 	/**
-	 * This method will return doctor
-	 * @return doctor the patients Doctor
+	 * Retrieves the doctor assigned to this patient.
+	 *
+	 * @return The {@link Doctor} object assigned to this patient, or {@code null} if no doctor is assigned.
 	 */
 	public Doctor getDoctor() {
 		for (Doctor myDoctor : Doctor.doctors) {
@@ -62,10 +72,11 @@ public class Patient extends Person{
 		}
 		return null;
 	}
-	
+
 	/**
-	 * This method will set doctor
-	 * @param doctor to set
+	 * Assigns a doctor to this patient.
+	 *
+	 * @param doctor The doctor to assign.
 	 */
 	public void setDoctor(Doctor doctor){
 		boolean doctorWasInList = false;
@@ -80,27 +91,30 @@ public class Patient extends Person{
 			doctor.addPatient(this);
 		}
 	}
-	
+
 	/**
-	 * This method will add a disease to patients diseases
-	 * @param disease to add
+	 * Adds a disease to this patient's list of diseases.
+	 *
+	 * @param disease The disease to add.
 	 */
 	public void addDisease(Disease disease) {
 		this.patientsDiseases.add(disease);
 	}
-	
+
 	/**
-	 * This method will remove a cured disease from patients diseases
-	 * @param disease to remove
-	 * @return boolean true if it was in array
+	 * Removes a disease from this patient's list of diseases, signifying that it has been cured.
+	 *
+	 * @param disease The disease to remove.
+	 * @return {@code true} if the disease was successfully removed, {@code false} otherwise.
 	 */
 	public boolean curedDisease(Disease disease) {
 		return this.patientsDiseases.remove(disease);
 	}
 
 	/**
-	 * This method will return an array contains all patients diseases
-	 * @return an array of diseases
+	 * Retrieves all diseases that this patient has.
+	 *
+	 * @return An array of {@link Disease} objects.
 	 */
 	public Disease[] getAllDiseases() {
 		Disease[] result = new Disease[this.patientsDiseases.size()];
@@ -110,10 +124,11 @@ public class Patient extends Person{
 		}
 		return result;
 	}
-	
+
 	/**
-	 * This method will return an array contains all patients medicines
-	 * @return an array of medicines
+	 * Retrieves all medicines prescribed to this patient for their diseases.
+	 *
+	 * @return An array of {@link Medicine} objects.
 	 */
 	public Medicine[] getAllMedicines() {
 		ArrayList<Medicine> medicines = new ArrayList<Medicine>();
@@ -129,10 +144,11 @@ public class Patient extends Person{
 		}
 		return result;
 	}
-	
+
 	/**
-	 * This method will return an array contains all Patients
-	 * @return an array of patients
+	 * Retrieves all patients that have been created in the system.
+	 *
+	 * @return An array of all {@link Patient} objects.
 	 */
 	public static Patient[] getAllPatients() {
 		Patient[] result = new Patient[patients.size()];
@@ -142,9 +158,9 @@ public class Patient extends Person{
 		}
 		return result;
 	}
-	
+
 	/**
-	 * This method will set an unique id to a Patient
+	 * Generates a unique ID for the patient.
 	 */
 	public void idGenerator() {
 		long identifier;
@@ -152,10 +168,12 @@ public class Patient extends Person{
 		identifier = (long)952.e6 + (long)rand.nextInt((int)1.e6);
 		this.idGenerator(identifier);
 	}
-	
+
 	/**
-	 * This method will set id to Patient if it was not created before
-	 * @param id the identifier of patient
+	 * Sets the patient's ID, ensuring it is unique. If the provided ID already exists,
+	 * a new unique ID is generated.
+	 *
+	 * @param id The desired ID for the patient.
 	 */
 	public void idGenerator(long id) {
 		boolean wasCreated = false;
@@ -168,5 +186,5 @@ public class Patient extends Person{
 		if(!wasCreated)
 			this.id = id;
 	}
-	
+
 }

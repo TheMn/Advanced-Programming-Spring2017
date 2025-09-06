@@ -1,8 +1,12 @@
 package poroje4;
 
 /**
- * <h1> Person </h1>
- * Declaration of Person class
+ * An abstract base class for representing a person in the hospital management system.
+ * This class provides common properties for all persons, such as name, gender, and birth date.
+ *
+ * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public abstract class Person {
 	private String firstName;
@@ -10,23 +14,25 @@ public abstract class Person {
 	private String gender;
 	private String birthDate;
 	public long id;
-	
+
 	/**
-	 * The Person contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
+	 * Constructs a new Person object with the given first and last names.
+	 *
+	 * @param firstName The person's first name.
+	 * @param lastName The person's last name.
 	 */
 	public Person(String firstName, String lastName) {
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 	}
-	
+
 	/**
-	 * The Person contractor
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param gender the gender
-	 * @param birthDate the birth date
+	 * Constructs a new Person object with the given personal details.
+	 *
+	 * @param firstName The person's first name.
+	 * @param lastName The person's last name.
+	 * @param gender The person's gender.
+	 * @param birthDate The person's birth date.
 	 */
 	public Person(String firstName, String lastName,String gender, String birthDate) {
 		this.setFirstName(firstName);
@@ -34,83 +40,107 @@ public abstract class Person {
 		this.setGender(gender);
 		this.setBirthDate(birthDate);
 	}
-	
+
 	/**
-	 * @param firstName the firstName to set
+	 * Sets the person's first name.
+	 *
+	 * @param firstName The first name to set.
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
 	/**
-	 * @return the firstName
+	 * Gets the person's first name.
+	 *
+	 * @return The person's first name.
 	 */
 	public String getFirstName() {
 		return this.firstName;
 	}
-	
+
 	/**
-	 * @param lastName the lastName to set
+	 * Sets the person's last name.
+	 *
+	 * @param lastName The last name to set.
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	/**
-	 * @return the lastName
+	 * Gets the person's last name.
+	 *
+	 * @return The person's last name.
 	 */
 	public String getLastName() {
 		return this.lastName;
 	}
-	
+
 	/**
-	 * This method will return FullName of Person
-	 * @return String the FullName
+	 * Gets the person's full name (first name and last name).
+	 *
+	 * @return The person's full name.
 	 */
 	public String getFullName() {
 		return this.firstName + "-" + this.lastName;
 	}
-	
+
 	/**
-	 * idGenerator abstract classes 
+	 * Abstract method for generating a unique ID.
 	 */
 	public abstract void idGenerator();
-	public abstract void idGenerator(long id);
-	
+
 	/**
-	 * @param birthDate the birthDate to set
+	 * Abstract method for setting a unique ID.
+	 *
+	 * @param id The ID to set.
+	 */
+	public abstract void idGenerator(long id);
+
+	/**
+	 * Sets the person's birth date.
+	 *
+	 * @param birthDate The birth date to set.
 	 */
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+
 	/**
-	 * @return the birthDate
+	 * Gets the person's birth date.
+	 *
+	 * @return The person's birth date.
 	 */
 	public String getBirthDate() {
 		return this.birthDate;
 	}
-	
+
 	/**
-	 * @param gender the gender to set
+	 * Sets the person's gender.
+	 *
+	 * @param gender The gender to set.
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
+
 	/**
-	 * @return the gender
+	 * Gets the person's gender.
+	 *
+	 * @return The person's gender.
 	 */
 	public String getGender() {
 		return this.gender;
 	}
-	
+
 	/**
-	 * This method will return some description about Person
-	 * @return String description
+	 * Gets a description of the person, including their full name, gender, birth date, and ID.
+	 *
+	 * @return A string containing the person's description.
 	 */
 	public String getDescription() {
 		return this.getFullName() + " " + this.gender + " " + this.birthDate + " id: " + this.id;
 	}
-	
+
 }

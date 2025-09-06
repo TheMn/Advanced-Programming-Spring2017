@@ -1,19 +1,24 @@
 package com.themn.stringCommands;
 
 /**
- * <h1> Methods </h1>
- * In this class all StringCommands have been defined
+ * This class provides a collection of utility methods for string manipulation.
+ * These methods include sorting, case conversion, palindrome checking, rotation, and more.
+ *
+ * @author Amirhossein Mahdinejad
+ * @version 1.1
+ * @since 2023-04-12
  */
 public class Methods{
 
     /**
-     * This method will swap two index of String
-     * @param s the first input is {@code String} we want to work on it
-     * @param i the first index {@code int}
-     * @param j the second index {@code int}
-     * @return result is the {@code String} index i-th and j-th of input are swaped
+     * Swaps two characters in a string at the specified indices.
+     *
+     * @param s The input string.
+     * @param i The index of the first character to swap.
+     * @param j The index of the second character to swap.
+     * @return A new string with the characters at indices i and j swapped.
      */
-    private static String swaped(String s, int i, int j){
+    public static String swaped(String s, int i, int j){
         char []characters = new char[s.length()];
         for (int c = 0; c < characters.length; c++)
             characters[c] = s.charAt(c);
@@ -27,21 +32,23 @@ public class Methods{
     }
 
     /**
-     * This method will check if index is in interval
-     * @param index {@code int} that we want check it
-     * @param size {@code int} array length
-     * @return A boolean shows if index is ok or not
+     * Checks if an index is within the valid bounds of a given size.
+     *
+     * @param index The index to check.
+     * @param size The size of the array or string.
+     * @return {@code true} if the index is valid, {@code false} otherwise.
      */
-    private static boolean isOk(int index, int size) {
+    public static boolean isOk(int index, int size) {
         return (index >= 0 && index <= size-1);
     }
 
     /**
-     * This method will sort String from start index to finish index
-     * @param s the input {@code String} we want to work on it
-     * @param start {@code int} the start index
-     * @param finish {@code int} the finish index
-     * @return sorted input from start to finish
+     * Sorts a portion of a string in ascending order (case-insensitive).
+     *
+     * @param s The input string.
+     * @param start The starting index of the portion to sort (inclusive).
+     * @param finish The ending index of the portion to sort (inclusive).
+     * @return A new string with the specified portion sorted.
      */
     public static String sort(String s, int start, int finish){
         for (int i = start; i <= finish; i++) {
@@ -56,11 +63,12 @@ public class Methods{
     }
 
     /**
-     * This method will change capital letters to Lowercase in the interval
-     * @param s the input {@code String} we want to work on it
-     * @param start {@code int} the start index
-     * @param finish {@code int} the finish index
-     * @return res {@code String} all characters in interval [start, finish] are in lowercase form
+     * Converts all uppercase characters in a specified portion of a string to lowercase.
+     *
+     * @param s The input string.
+     * @param start The starting index of the portion to convert (inclusive).
+     * @param finish The ending index of the portion to convert (inclusive).
+     * @return A new string with the specified portion converted to lowercase.
      */
     public static String toLower(String s, int start, int finish){
         String res = "";
@@ -85,11 +93,12 @@ public class Methods{
     }
 
     /**
-     * This method will change Lowercase letters in the interval to Capital
-     * @param s the input {@code String} we want to work on it
-     * @param start {@code int} the start index
-     * @param finish {@code int} the finish index
-     * @return res {@code String} all characters in interval [start, finish] are in uppercase form
+     * Converts all lowercase characters in a specified portion of a string to uppercase.
+     *
+     * @param s The input string.
+     * @param start The starting index of the portion to convert (inclusive).
+     * @param finish The ending index of the portion to convert (inclusive).
+     * @return A new string with the specified portion converted to uppercase.
      */
     public static String toUpper(String s, int start, int finish) {
         String res = "";
@@ -114,10 +123,11 @@ public class Methods{
     }
 
     /**
-     * Check if two String are Palindromes
-     * @param first {@code String}
-     * @param second {@code String}
-     * @return A boolean shows if first and second are Palindromes or not
+     * Checks if a string is the reverse of another, effectively checking if they are palindromic to each other.
+     *
+     * @param first The first string.
+     * @param second The second string.
+     * @return {@code true} if the first string is the reverse of the second, {@code false} otherwise.
      */
     public static boolean isPalindromes(String first, String second) {
         String firstReversed = "";
@@ -127,10 +137,11 @@ public class Methods{
     }
 
     /**
-     * This method will rotate String to right or left
-     * @param s is the {@code String} input we want to rotate it
-     * @param turn {@code int} shows that how many times in which direction rotating
-     * @return rotated form of input String
+     * Rotates a string to the right or left by a specified number of turns.
+     *
+     * @param s The string to rotate.
+     * @param turn The number of positions to rotate. A positive value rotates to the right, a negative value rotates to the left.
+     * @return The rotated string.
      */
     public static String rotate(String s, int turn) {
         String res = "";
@@ -152,11 +163,12 @@ public class Methods{
     }
 
     /**
-     * This method will return a sub-string
-     * @param s is the {@code String} we want to work on it
-     * @param start is the {@code int} value start index of sub-string
-     * @param finish is the {@code int} value finish index of sub-string
-     * @return res is sub-string from index start to finish
+     * Extracts a substring from a string based on start and end indices.
+     *
+     * @param s The input string.
+     * @param start The starting index of the substring (inclusive).
+     * @param finish The ending index of the substring (inclusive).
+     * @return The extracted substring.
      */
     public static String substring(String s, int start, int finish) {
         String res = "";
@@ -168,10 +180,11 @@ public class Methods{
     }
 
     /**
-     * This method will return index of String in another one
-     * @param mainString {@code String} is the elder one
-     * @param subString {@code String} is the smaller one
-     * @return index of subString in mainString if is existent and -1 otherwise
+     * Finds the first occurrence of a substring within a main string.
+     *
+     * @param mainString The string to search in.
+     * @param subString The substring to search for.
+     * @return The starting index of the first occurrence of the substring, or -1 if not found.
      */
     public static int indexOf(String mainString, String subString) {
         for (int i = 0; i < mainString.length(); i++) {
@@ -183,10 +196,11 @@ public class Methods{
     }
 
     /**
-     * This method will replace all extra characters of String with underline
-     * @param mainString {@code String} is the elder one
-     * @param overflow {@code String} is the smaller one
-     * @return String replaced extra characters with underline
+     * Replaces all occurrences of a specified substring with an underscore.
+     *
+     * @param mainString The main string.
+     * @param overflow The substring to be replaced.
+     * @return A new string with all occurrences of the substring replaced by underscores.
      */
     public static String split(String mainString, String overflow) {
         String tmp = mainString;

@@ -2,11 +2,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 /**
- * A server for a network multi-player Floodit game that strings will send.
- * Server to Client: WELCOME, VALID_MOVE, OTHER_PLAYER_MOVED, VICTORY, DEFEAT,
- * TIE, MESSAGE
- * 
+ * A server for a networked two-player Flood-It game. The server listens for
+ * connections from two clients and then starts a new game. Communication
+ * between the server and clients is done via text-based messages.
+ *
  * @author TheMn
+ * @version 1.1
  */
 public class FlooditServer implements Runnable {
 
@@ -14,10 +15,10 @@ public class FlooditServer implements Runnable {
 	static int PORT;
 
 	/**
-	 * implementation of Floodit server.
-	 * 
-	 * @param portNumber the port number
-	 * @throws IOException {@link Throwable}
+	 * Constructs a new Flood-It server that listens on the specified port.
+	 *
+	 * @param portNumber The port number for the server to listen on.
+	 * @throws IOException if an I/O error occurs when opening the server socket.
 	 */
 	public FlooditServer(int portNumber) throws IOException {
 		PORT = portNumber;
@@ -25,10 +26,10 @@ public class FlooditServer implements Runnable {
 	}
 
 	/**
-	 * A new game will start and the values in welcome page will set up. Then
-	 * listener waits for the players.
-	 * 
-	 * @throws IOException
+	 * Initializes the server and starts listening for client connections. When two
+	 * clients have connected, a new game is started.
+	 *
+	 * @throws IOException if an I/O error occurs when waiting for a connection.
 	 */
 	private void initServer() throws IOException {
 		System.out.println("Tic Tac Toe Server is Running");
@@ -61,6 +62,10 @@ public class FlooditServer implements Runnable {
 		}
 	}
 
+	/**
+	 * Runs the server as an application. This method is the entry point for the
+	 * server thread.
+	 */
 	@Override
 	public void run() {
 		try {
