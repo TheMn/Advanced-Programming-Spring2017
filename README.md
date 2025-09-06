@@ -78,3 +78,28 @@ java MainClass
 ```
 
 In the GUI, select "MultiPlayer" and then "Join a server". Enter the server address (e.g., "localhost:1973") to connect.
+
+### 6. Multi-User Chat
+
+This is a simple multi-user chat application built in Java. It consists of a server and a client, allowing multiple users to connect to a chat room and exchange messages.
+
+**To compile:**
+
+```bash
+cd "multi-user-chat"
+javac -d bin src/Server.java src/Client.java
+```
+
+**To run the server:**
+
+```bash
+cd "multi-user-chat"
+java -cp bin Server
+```
+
+**To run the client:**
+
+```bash
+cd "multi-user-chat"
+java -cp bin Client
+```
